@@ -7,8 +7,10 @@
 
 import UIKit
 import Kingfisher
+
 class detailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    //collectionView stubs
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -24,9 +26,9 @@ class detailsViewController: UIViewController, UICollectionViewDelegate, UIColle
     
 
     
-    var prodInfo : Element!
+    var prodInfo : Element! //Variable to store data which is passed from first VC
     
-    
+    //outlets declared
     @IBOutlet weak var prodDesc: UITextView!
     @IBOutlet weak var detailIMG: UIImageView!
     @IBOutlet weak var colorList: UICollectionView!

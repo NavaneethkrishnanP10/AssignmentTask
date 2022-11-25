@@ -9,7 +9,7 @@ import UIKit
 
 class colorsCollectionCell: UICollectionViewCell {
     
-
+    //Outlets declared
     @IBOutlet weak var colorview: UIView!
     @IBOutlet weak var colorTitle: UILabel!
     override func awakeFromNib() {
@@ -20,6 +20,7 @@ class colorsCollectionCell: UICollectionViewCell {
         
         // Initialization code
     }
+    //function to set color in collectionView cell
     func setColor(color: ProductColor){
         
         colorTitle.text = color.colourName
@@ -27,6 +28,7 @@ class colorsCollectionCell: UICollectionViewCell {
     }
 
 }
+//Code to convert hexcode to UIColor
 extension UIColor {
     convenience init(hexString: String, alpha: CGFloat = 1.0) {
         let hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)

@@ -9,12 +9,14 @@ import UIKit
 
 class ViewController: UIViewController, UISearchBarDelegate{
     
+    //Variables declared
     var searchResults = [Element]()
     var viewModel = productViewModel()
     var productData = [Element]()
     var sendingInfo : Element!
     
  
+    //Outlets created
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var productsTable: UITableView!
     
@@ -22,23 +24,22 @@ class ViewController: UIViewController, UISearchBarDelegate{
         super.viewDidLoad()
         
         searchBar.delegate = self
-        
-        searchResults = productData
-        
+        //Data fetched from viewModel
         viewModel.getData { [weak self] in
             self!.productData = self!.viewModel.prodModel
-            self!.searchResults = self!.productData
+            self!.searchResults = self!.productData //'searchResults' is used for searching products
             DispatchQueue.main.async {
                 self?.productsTable.reloadData()
             }
             
         }
+        //TableViewCell registered
         productsTable.register(UINib.init(nibName: "productsTableViewCell", bundle: nil), forCellReuseIdentifier: "productsTableViewCell")
-        productsTable.rowHeight = UITableView.automaticDimension
         productsTable.estimatedRowHeight = 143
         // Do any additional setup after loading the view.
     }
 
+    //selected product details data sent through segue to detailsViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetails"{
             let destinationVC = segue.destination as! detailsViewController
@@ -47,15 +48,15 @@ class ViewController: UIViewController, UISearchBarDelegate{
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchResults = []
-        if searchText == ""{
+        if searchText == ""{ //search is empty all products are displayed
             searchResults = productData
         }
         for product in productData{
             if searchText.uppercased() == product.name.uppercased(){
-                print("hello")
                 searchResults.append(product)
             }
         }
+        //reload tableView after search is done
         self.productsTable.reloadData()
     }
 }

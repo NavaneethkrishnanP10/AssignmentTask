@@ -9,6 +9,7 @@ import UIKit
 import Kingfisher
 class productsTableViewCell: UITableViewCell {
 
+    //outlets created
     @IBOutlet weak var prodIMG: UIImageView!
     @IBOutlet weak var prodLink: UITextView!
     @IBOutlet weak var prodPrice: UILabel!
@@ -26,12 +27,13 @@ class productsTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    //function to set values in tableView cell
     func dataPass(row: Element){
         
         prodName.text = row.name
         prodPrice.text = String(row.priceSign!.rawValue ) + String(row.price! )
         prodLink.text = row.productLink
-        let url = URL(string: String(row.imageLink))
+        let url = URL(string: String(row.imageLink)) //kingfisher used to set image using url
         prodIMG.kf.setImage(with: url)
     }
     
